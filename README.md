@@ -16,6 +16,7 @@
 | Lombok | 1.18.46 | |
 | Configuration Processor | — | `@ConfigurationProperties` IDE 自动补全 |
 | Jackson 3 | 3.1.2 | JSON 序列化（`tools.jackson`） |
+| 数据库驱动 | — | ⚠️ 未引入依赖，见下方数据源说明 |
 
 ## 默认配置一览
 
@@ -27,6 +28,8 @@ server:
 ```
 
 ### 数据源（必须改）
+
+> ⚠️ pom.xml 中**未引入数据库驱动**，使用前请根据所选数据库自行添加对应依赖（如 SQLite → `sqlite-jdbc`、MySQL → `mysql-connector-j`、PostgreSQL → `postgresql`）。
 
 ```yaml
 spring:
