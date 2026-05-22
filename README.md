@@ -265,7 +265,7 @@ src/main/java/com/example/demo
 ├── aspect/            # AuthAspect, RateLimitAspect, IdempotentAspect
 ├── common/            # Result, PageResult, BaseController, ContextUtil, UserContext
 ├── config/            # MybatisPlusConfig, RedisConfig, JacksonConfig, WebMvcConfig, ...
-├── constant/          # WebConstants
+
 ├── controller/        # TokenController（获取幂等 token）
 ├── enums/             # RoleEnum
 ├── exception/         # JwtException, AuthException, RateLimitException, FileUploadException
