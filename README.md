@@ -288,9 +288,7 @@ src/main/resources
 
 ## 重命名脚本
 
-使用 `scripts/` 下的脚本将项目内容重命名为你自己的项目，完成后手动改根目录名。
-
-支持：
+使用 `scripts/` 下的脚本将项目内容重命名。脚本改内不改变外——根目录需要手动改：
 
 | 脚本 | 平台 |
 |------|------|
@@ -299,14 +297,14 @@ src/main/resources
 
 **自动替换：** 包名、目录结构、pom.xml 的 groupId/artifactId、application.yml 的应用名、主启动类名。
 
-**不自动改：** 项目根目录名（脚本运行时无法重命名自身所在目录）。
+**手动完成：** 脚本结束后按提示复制粘贴执行根目录改名命令。
 
 ```bash
-# 1. 替换文件内容
-cd scripts && chmod +x rename.sh && ./rename.sh com.yourcompany yourapp
+# 1. 替换项目内容
+./scripts/rename.sh com.yourcompany yourapp
 
-# 2. 重命名根目录（根据提示执行）
-mv ../demo ../yourapp    # 或 cd .. && mv demo yourapp
+# 2. 根据提示复制粘贴执行根目录改名
+cd .. && mv 'spring-boot-template' 'yourapp'
 ```
 
 ## 敏感文件说明

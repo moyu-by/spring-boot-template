@@ -3,13 +3,16 @@
     项目重命名脚本 — Windows PowerShell / PowerShell Core (跨平台)
 .DESCRIPTION
     将模板项目 (com.example.demo) 重命名为你的新项目。
+    脚本会替换包名、目录结构、pom.xml、主类名。
+    根目录改名需要脚本外手动执行（脚本无法重命名自身所在目录）。
 .PARAMETER GroupId
     新 groupId，如 com.mycompany
 .PARAMETER ArtifactId
     新 artifactId，如 my-app
 .EXAMPLE
-    .\rename.ps1 com.mycompany my-app
-    .\rename.ps1 com.blog blog-server
+    .\scripts\rename.ps1 com.mycompany my-app
+.EXAMPLE
+    .\scripts\rename.ps1 com.blog blog-server
 #>
 
 param(
@@ -39,8 +42,8 @@ $ProjectName = Split-Path -Leaf $ProjectRoot
 Write-Host "========================================"
 Write-Host "  旧包名: $OldPackage"
 Write-Host "  新包名: $NewPackage"
-Write-Host "  artifactId: demo → $ArtifactId"
-Write-Host "  根目录:   $ProjectName/ → $ArtifactId/"
+Write-Host "  artifactId: $OldArtifact → $ArtifactId"
+Write-Host "  当前目录: $ProjectName/"
 Write-Host "========================================"
 Write-Host ""
 
@@ -168,9 +171,12 @@ Write-Host ""
 Write-Host "========================================"
 Write-Host "  ✅ 项目内容重命名完成!"
 Write-Host "  包名:     $OldPackage → $NewPackage"
-Write-Host "  artifact: demo → $ArtifactId"
+Write-Host "  artifact: $OldArtifact → $ArtifactId"
 Write-Host "  主类:     DemoApplication → $NewMainName"
 Write-Host "========================================"
 Write-Host ""
-Write-Host "最后一步：重命名项目根目录"
-Write-Host "  Rename-Item -Path '$ProjectName' -NewName '$ArtifactId'"
+Write-Host "最后一步: 回到上级目录执行根目录改名"
+Write-Host ""
+Write-Host '  cd .. && Rename-Item -Path "' + $ProjectName + '" -NewName "' + $ArtifactId + '"'
+Write-Host ""
+Write-Host "以上命令可直接复制粘贴执行。"
