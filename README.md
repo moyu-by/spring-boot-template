@@ -210,7 +210,7 @@ SB 4 中部分 Jackson 自动配置类路径变化，如 `Jackson2ObjectMapperBu
 |------|------|
 | JWT 登录/校验 | `JwtUtil` + `JwtInterceptor` |
 | 注解式跳过认证 | `@NoLoginRequired` — 标记公开接口 |
-| 角色权限检查 | `@AdminRequired` — 管理员接口 |
+| 角色权限检查 | `@RoleRequired(RoleEnum.ADMIN)` — 灵活可扩展 |
 | 当前用户上下文 | `ContextUtil.getUserId()` / `ContextUtil.getRole()` — 任意层获取 |
 
 ### 接口防护
@@ -264,7 +264,7 @@ public class UserController extends BaseController<UserService, User> {
 
 ```
 src/main/java/com/example/demo
-├── annotation/        # @NoLoginRequired, @AdminRequired, @RateLimit, @Idempotent
+├── annotation/        # @NoLoginRequired, @RoleRequired, @RateLimit, @Idempotent
 ├── aspect/            # AuthAspect, RateLimitAspect, IdempotentAspect
 ├── common/            # Result, PageResult, BaseController, ContextUtil, UserContext
 ├── config/            # MybatisPlusConfig, RedisConfig, JacksonConfig, WebMvcConfig, ...
