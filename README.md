@@ -66,6 +66,12 @@ file:
   port: 8080
   sub-path: file
   store-path: ./upload            # 本地存储目录
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB         # 单文件最大
+      max-request-size: 20MB      # 一次请求总大小
 ```
 
 ### RSA 密钥
@@ -217,7 +223,7 @@ SB 4 中部分 Jackson 自动配置类路径变化，如 `Jackson2ObjectMapperBu
 
 | 功能 | 实现 |
 |------|------|
-| 接口限流 | `@RateLimit` — 令牌桶 + Redis Lua 原子操作 |
+| 接口限流 | `@RateLimit` — 令牌桶 + Redis Lua 原子操作，每个接口独立限流 |
 | 幂等校验 | `@Idempotent` — Redis DEL 原子判重 |
 | 参数校验 | `@Valid` / `@Validated` — Jakarta Bean Validation |
 | 全局异常处理 | `GlobalExceptionHandler` — 统一 HTTP 状态码 + 业务码 |
@@ -409,7 +415,8 @@ public ResponseEntity<Result<Void>> handleOrder(OrderException e) {
 @RateLimit(ratePerSecond = 3, maxCapacity = 5)
 ```
 
-如需自定义限流维度（如按业务 ID 而非 userId/IP），修改 `RateLimitAspect.buildKey()`：
+如需自定义限流维度（如按业务 ID 而非 userId/IP），修改 `RateLimitAspect.buildKey()`。
+当前 key 格式已包含接口路径（`request.getRequestURI()`），不同接口之间限流互不影响。
 
 ```java
 private String buildKey() {
