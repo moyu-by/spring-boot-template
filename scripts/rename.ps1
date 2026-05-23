@@ -135,6 +135,8 @@ if ($MainFile) {
     $OldMainName = [System.IO.Path]::GetFileNameWithoutExtension($MainFile.Path)
     $content = Get-Content -Path $MainFile.Path -Raw
     $content = $content -replace "class $OldMainName", "class $NewMainName"
+    # 同时修改 SpringApplication.run(DemoApplication.class, args) → RagApplication.class
+    $content = $content -replace "${OldMainName}\.class", "${NewMainName}.class"
     Set-Content -Path $MainFile.Path -Value $content -NoNewline
     $NewMainPath = Join-Path (Split-Path $MainFile.Path) "${NewMainName}.java"
     if ($MainFile.Path -ne $NewMainPath) {

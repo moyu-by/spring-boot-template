@@ -106,6 +106,9 @@ if [ -n "$MAIN_FILE" ]; then
     OLD_MAIN_NAME=$(basename "$MAIN_FILE" .java)
     sed -i '' "s|class ${OLD_MAIN_NAME}|class ${NEW_MAIN_NAME}|" "$MAIN_FILE" 2>/dev/null \
         || sed -i "s|class ${OLD_MAIN_NAME}|class ${NEW_MAIN_NAME}|" "$MAIN_FILE"
+    # 同时修改 SpringApplication.run(DemoApplication.class, args) → RagApplication.class
+    sed -i '' "s|${OLD_MAIN_NAME}\.class|${NEW_MAIN_NAME}.class|g" "$MAIN_FILE" 2>/dev/null \
+        || sed -i "s|${OLD_MAIN_NAME}\.class|${NEW_MAIN_NAME}.class|g" "$MAIN_FILE"
     mv "$MAIN_FILE" "$(dirname "$MAIN_FILE")/${NEW_MAIN_NAME}.java"
     echo "   主类: ${OLD_MAIN_NAME} → ${NEW_MAIN_NAME}"
 fi
