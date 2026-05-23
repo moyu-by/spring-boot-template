@@ -6,6 +6,12 @@ spring:
   application:
     name: demo
 
+  # ==================== 文件上传限制 ====================
+  servlet:
+    multipart:
+      max-file-size: 10MB       # 单个文件最大
+      max-request-size: 20MB    # 一次请求总大小
+
   # ==================== 数据源 ====================
   # 生产环境通过环境变量注入，避免敏感信息写死
   datasource:
