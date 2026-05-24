@@ -93,6 +93,9 @@ mybatis-plus:
       logic-not-delete-value: 0      # 未删除
 ```
 
+⚠️ `MybatisPlusConfig.java` 中分页插件默认使用 `DbType.SQLITE`，切换数据库时需同步修改。
+自动填充字段（`createTime` / `updateTime`）可在 `insertFill()` / `updateFill()` 中按需增删或改名。
+
 ### 异步线程池
 
 ```yaml
@@ -122,6 +125,8 @@ mybatis-plus:
 | 线程池参数 | 核心5/最大20/队列100 | 高并发项目需要调大 |
 | `jwt.ttl` | 7天 | 缩短 token 有效期 |
 | 逻辑删除 | `deleted` 字段 / `1`=已删 / `0`=未删 | 如果你的表用不同字段名 |
+| MP 分页数据库类型 | `DbType.SQLITE`（在 `MybatisPlusConfig.java`） | 切换数据库时改，如 MySQL → `DbType.MYSQL` |
+| 自动填充字段 | `createTime` / `updateTime` | 字段名不同或不需要自动填充时，改 `insertFill()` / `updateFill()` |
 
 ### 删除模板示例
 
