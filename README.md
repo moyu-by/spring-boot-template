@@ -14,7 +14,6 @@
 | Hutool | 5.8.44 | 工具库（RSA、IP 提取等） |
 | SpringDoc | 3.0.3 | Swagger UI |
 | Lombok | 1.18.46 | |
-| Configuration Processor | — | `@ConfigurationProperties` IDE 自动补全 |
 | Jackson 3 | 3.1.2 | JSON 序列化（`tools.jackson`） |
 | 数据库驱动 | — | ⚠️ 未引入依赖，见下方数据源说明 |
 
