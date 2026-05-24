@@ -210,7 +210,26 @@ SB 4 中部分 Jackson 自动配置类路径变化，如 `Jackson2ObjectMapperBu
 </dependency>
 ```
 
-同时所有 `tools.jackson` 的 import 改为 `com.fasterxml.jackson`。
+同时所有 `tools.jackson` 的 import 改为 `com.fasterxml.jackson`，`JacksonConfig.java` 改用如下写法：
+
+```java
+// Spring Boot 3 / Jackson 2 版本的 JacksonConfig
+@Configuration
+public class JacksonConfig {
+
+    @Bean
+    public Jackson2ObjectMapperBuilderCustomizer jacksonCustomizer() {
+        return builder -> {
+            builder.timeZone(TimeZone.getTimeZone("GMT+8"));
+            builder.simpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            builder.serializerByType(Long.class,
+                    com.fasterxml.jackson.databind.ser.std.ToStringSerializer.instance);
+            builder.serializerByType(Long.TYPE,
+                    com.fasterxml.jackson.databind.ser.std.ToStringSerializer.instance);
+        };
+    }
+}
+```
 
 ## 功能清单
 
