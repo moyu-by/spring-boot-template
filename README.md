@@ -347,8 +347,7 @@ cd .. && mv 'spring-boot-template' 'yourapp'
 
 新用户搭建时需自行创建 `application-dev.yml`（可参考 `application-dev.yml.example`）并生成 RSA 密钥。
 
-> **IntelliJ IDEA 用户：** 在 `application.yml` 首行加 `# yaml-language-server: $schema=https://json.schemastore.org/spring-boot.json` 可获得自定义属性的补全提示。VS Code 用户不需要。
-> 若 IDEA 无法正确识别自定义配置（标红），关闭 IDEA → 删除项目根目录下的 `.idea` 文件夹 → 重新导入 Maven 项目即可。
+> **IntelliJ IDEA 用户：** 在 `application.yml` 首行加 `# yaml-language-server: $schema=https://json.schemastore.org/spring-boot.json` 可获得自定义属性的补全提示；若 IDEA 无法正确识别自定义配置（标红），关闭 IDEA → 删除 `.idea` 文件夹 → 重新导入 Maven 项目即可。VS Code 用户不需要。
 
 ## 扩展指南
 
