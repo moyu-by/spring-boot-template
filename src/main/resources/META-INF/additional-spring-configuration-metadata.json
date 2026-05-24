@@ -9,7 +9,7 @@
     {
       "name": "jwt.secret-key",
       "type": "java.lang.String",
-      "description": "JWT HMAC-SHA256 签名密钥。生产环境务必更换，可使用 openssl rand -hex 32 生成",
+      "description": "JWT HMAC-SHA256 签名密钥。生产环境务必更换",
       "sourceType": "com.example.demo.config.JwtProperties"
     },
     {
@@ -46,6 +46,80 @@
       "name": "file.store-path",
       "type": "java.lang.String",
       "description": "文件本地存储目录",
+      "defaultValue": "./upload"
+    },
+    {
+      "name": "env-server.address",
+      "type": "java.lang.String",
+      "description": "服务器地址（开发环境）",
+      "defaultValue": "localhost"
+    },
+    {
+      "name": "env-server.port",
+      "type": "java.lang.Integer",
+      "description": "服务器端口（开发环境）",
+      "defaultValue": "8080"
+    },
+    {
+      "name": "env-key-path",
+      "type": "java.lang.String",
+      "description": "RSA 密钥路径（开发环境覆盖 key-path）",
+      "defaultValue": "classpath:key"
+    },
+    {
+      "name": "env-jwt.key",
+      "type": "java.lang.String",
+      "description": "JWT 签名密钥（开发环境覆盖 jwt.secret-key）"
+    },
+    {
+      "name": "env-jwt.ttl",
+      "type": "java.lang.Long",
+      "description": "JWT 过期时间（开发环境覆盖 jwt.ttl）",
+      "defaultValue": "604800000"
+    },
+    {
+      "name": "env-database.url",
+      "type": "java.lang.String",
+      "description": "数据库连接 URL（环境变量注入）"
+    },
+    {
+      "name": "env-database.username",
+      "type": "java.lang.String",
+      "description": "数据库用户名（环境变量注入）"
+    },
+    {
+      "name": "env-database.password",
+      "type": "java.lang.String",
+      "description": "数据库密码（环境变量注入）"
+    },
+    {
+      "name": "env-file.protocol",
+      "type": "java.lang.String",
+      "description": "文件访问协议（环境变量覆盖 file.protocol）",
+      "defaultValue": "http"
+    },
+    {
+      "name": "env-file.host",
+      "type": "java.lang.String",
+      "description": "文件服务器地址（环境变量覆盖 file.host）",
+      "defaultValue": "localhost"
+    },
+    {
+      "name": "env-file.port",
+      "type": "java.lang.Integer",
+      "description": "文件服务器端口（环境变量覆盖 file.port）",
+      "defaultValue": "8080"
+    },
+    {
+      "name": "env-file.sub-path",
+      "type": "java.lang.String",
+      "description": "文件 URL 子路径（环境变量覆盖 file.sub-path）",
+      "defaultValue": "file"
+    },
+    {
+      "name": "env-file.store-path",
+      "type": "java.lang.String",
+      "description": "文件本地存储目录（环境变量覆盖 file.store-path）",
       "defaultValue": "./upload"
     }
   ]
